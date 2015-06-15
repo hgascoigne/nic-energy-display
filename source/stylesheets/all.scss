@@ -1,0 +1,122 @@
+@charset "utf-8";
+
+/*
+Title: Hello Gascoigne
+Website CSS Version: 1.0
+Website URL: http://hellogascoigne.com
+*/
+
+// IMPORTS
+// =======
+@import "bourbon/bourbon";
+@import "variables";
+@import "typography";
+@import "grid";
+@import "helper";
+@import "section";
+@import "button";
+@import "overlay";
+@import "animate";
+
+// DEFAULT STYLES
+// ==============
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
+body {
+	background: #fff;
+	color: $color-dark;
+}
+
+.wrap {
+	padding: 0 15px;
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+.row {
+	max-width: 100%;
+}
+
+.section-title {
+	border-bottom: 1px solid $color-light;
+	margin: 0 $sizing-unit*2 $sizing-unit;
+	padding: 0 0 $sizing-unit;
+
+	@media ($breakpoint-phone) {
+		margin: 0 0 $sizing-unit;
+	}
+}
+
+/* Icon Sizes */
+.icon-sm,
+.icon-md,
+.icon-lg,
+.icon-xl {
+	line-height: 1;
+}
+
+.icon-md {
+	@include size(32px);
+	font-size: 32px;
+}
+
+.icon-lg {
+	@include size(64px);
+	font-size: 64px;
+}
+
+.icon-xl {
+	@include size(128px);
+	font-size: 128px;
+}
+
+/* Icon List */
+.icon-list {
+	.list-item + .list-item {
+		margin-left: 15px;
+	}
+
+	a {
+		display: inline-block;
+	}
+}
+
+/* Energy Display */
+.energy-display {
+	margin: $sizing-unit*2 0;
+}
+
+/* Stat Box */
+.stat-box {
+	margin-bottom: $sizing-unit;
+
+	h2 {
+		font-size: 3em;
+		font-weight: bold;
+		margin: 0px;
+
+		.label {
+			display: block;
+			font-size: 0.5em;
+			font-weight: 300;
+			@extend .text-muted;
+		}
+	}
+}
+
+/* Charts */
+.chart-container {
+	margin: $sizing-unit 0;
+}
+
+/* Footer */
+.footer {
+	border-top: 1px solid $color-light;
+	padding: $sizing-unit 0;
+
+	p {
+		margin: 0;
+	}
+}
