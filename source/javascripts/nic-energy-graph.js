@@ -9,7 +9,7 @@ $(document).ready(function () {
 
   // Config
   var config = {
-  	chartlimit: 8,
+  	chartlimit: 7,
   	timeFormat: 'h:mm a'
   }
 
@@ -21,8 +21,8 @@ $(document).ready(function () {
 
   // Set API URLs
   var apiEndpoints = {
-  	latest: 'http://localhost:8080/data/latest',
-  	set: 'http://localhost:8080/data?limit='+config.chartlimit
+  	latest: 'https://nic-energy-display.herokuapp.com/data/latest',
+  	set: 'https://nic-energy-display.herokuapp.com/data?limit='+config.chartlimit
   }
 
   // Set update status
@@ -73,9 +73,10 @@ $(document).ready(function () {
         $('.footer p').addClass('hidden')
         $('.footer #energy-success-text').removeClass('hidden')
         // Convert Values (From millions to tens)
-        var cwBtuValue = (data.cw * 0.00001).toFixed(2)
-        var hwBtuValue = (data.hw * 0.00001).toFixed(2)
-        var kwDemandValue = data.kw
+        var convertedData = convertData(data)
+        var cwBtuValue = convertedData.cw
+        var hwBtuValue = convertedData.hw
+        var kwDemandValue = convertedData.kw
         // Update chart
         var newLabel = moment().format(config.timeFormat)
         charts.cw.removeData()
@@ -161,8 +162,8 @@ $(document).ready(function () {
    */
   function convertData (dataPoint) {
   	var newData = {}
-  	newData.cw = (dataPoint.cw * 0.00001).toFixed(2)
-    newData.hw = (dataPoint.hw * 0.00001).toFixed(2)
+  	newData.cw = (dataPoint.cw * 0.000001).toFixed(1)
+    newData.hw = (dataPoint.hw * 0.000001).toFixed(1)
     newData.kw = dataPoint.kw.toFixed(1)
 
   	return newData
@@ -176,14 +177,14 @@ $(document).ready(function () {
 	  	tempData.push(0)
 	  }
 	  chartLabels.reverse()
-	  console.log(chartLabels)
+	  //console.log(chartLabels)
 
 	  var usageTemplateCW = {
 	    labels: chartLabels,
 	    datasets: [
 	      {
 	        label: 'Chilled Water BTU',
-	        fillColor: '#52C5E5',
+	        fillColor: '#51C5E5',
 	        data: data.cw
 	      }
 	    ]
